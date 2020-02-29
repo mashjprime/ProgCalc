@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class gui {
+public class console {
     public static void menu() {
         boolean running = true;
         Scanner in = new Scanner(System.in);
