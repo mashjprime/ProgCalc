@@ -48,7 +48,7 @@ public class console {
         }
     }
 
-    public static void convertDecimal() {
+    private static void convertDecimal() {
         Scanner in = new Scanner(System.in);
         System.out.println("Please enter decimal number: ");
         String number = in.nextLine();
@@ -57,7 +57,7 @@ public class console {
         System.out.println("Hexadecimal: " + convert.decimalToHexidecimal(number));
     }
 
-    public static void convertBinary() {
+    private static void convertBinary() {
         Scanner in = new Scanner(System.in);
         System.out.println("Please enter binary number: ");
         String number = in.nextLine();
@@ -67,7 +67,7 @@ public class console {
         System.out.println("Hexadecimal: " + convert.decimalToHexidecimal(decimal ));
     }
 
-    public static void convertOctal() {
+    private static void convertOctal() {
         Scanner in = new Scanner(System.in);
         System.out.println("Please enter octal number: ");
         String number = in.nextLine();
@@ -77,7 +77,7 @@ public class console {
         System.out.println("Hexadecimal: " + convert.decimalToHexidecimal(decimal));
     }
 
-    public static void convertHexadecimal() {
+    private static void convertHexadecimal() {
         Scanner in = new Scanner(System.in);
         System.out.println("Please enter hexadecimal number: ");
         String number = in.nextLine();
@@ -88,7 +88,7 @@ public class console {
 
     }
 
-    public static void math() {
+    private static void math() {
         int a = 0;
         int b = 0;
         int c = a + b;
