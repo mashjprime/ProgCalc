@@ -5,21 +5,18 @@ import java.awt.event.ActionListener;
 public class App {
     private JButton buttonMsg;
     private JPanel panelMain;
-    private JTextField input;
-    private JComboBox baseSelect;
-
-    String[] baseNumbers = new String[] {"Decimal, Binary, Octal, Hexadecimal"};
+    private JTextField inputA;
+    private JTextField inputB;
+    private JComboBox baseSelectA;
+    private JComboBox baseSelectB;
+    private JComboBox operation;
 
     private App() {
-        baseSelect.addItem("Decimal");
-        baseSelect.addItem("Binary");
-        baseSelect.addItem("Octal");
-        baseSelect.addItem("Hexadecimal");
 
         buttonMsg.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                convertBaseNumber();
+                process();
             }
         });
     }
@@ -34,35 +31,72 @@ public class App {
         frame.setVisible(true);
     }
 
+    public void process() {
+        if (operation.getSelectedItem().equals("Convert")) {
+            convertBaseNumber();
+        } else if (operation.getSelectedItem().equals("Add")) {
+            // Implement
+        } else if (operation.getSelectedItem().equals("Subtract")) {
+            // Implement
+        } else if (operation.getSelectedItem().equals("Multiply")) {
+            // Implement
+        } else if (operation.getSelectedItem().equals("Divide")) {
+            // Implement
+        }
+    }
+
     public void convertBaseNumber() {
-        String number = input.getText();
-        String selected = baseSelect.getSelectedItem().toString();
+        String numberA = inputA.getText();
+        String numberB = inputB.getText();
+        String selectedA = baseSelectA.getSelectedItem().toString();
+        String selectedB = baseSelectB.getSelectedItem().toString();
         String message = "";
 
-        if (selected.equals("Decimal")) {
-            message += ("\nBinary: " + convert.decimalToBinary(number));
-            message += ("\nOctal: " + convert.decimalToOctal(number));
-            message += ("\nHexadecimal: " + convert.decimalToHexidecimal(number));
-        } else if (selected.equals("Binary")) {
-            String decimal = convert.binaryToDecimal(number);
-            message += ("\nDecimal: " + decimal);
-            message += ("\nOctal: " + convert.decimalToOctal(decimal));
-            message += ("\nHexadecimal: " + convert.decimalToHexidecimal(decimal ));
-        } else if (selected.equals("Octal")) {
-            String decimal = convert.octalToDecimal(number);
-            message += ("\nDecimal: " + decimal);
-            message += ("\nBinary: " + convert.decimalToBinary(decimal));
-            message += ("\nHexadecimal: " + convert.decimalToHexidecimal(decimal));
-        } else if (selected.equals("Hexadecimal")) {
-            String decimal = convert.hexadecimalToDecimal(number);
-            message += ("\nDecimal: " + decimal);
-            message += ("\nBinary: " + convert.decimalToBinary(decimal));
-            message += ("\nOctal: " + convert.decimalToOctal(decimal));
-        } else {
-            message += "No base selected";
+        if (selectedA.equals("Decimal")) {
+            if (selectedB.equals("Binary")) {
+                inputB.setText(convert.decimalToBinary(numberA));
+            } else if (selectedB.equals("Octal")) {
+                inputB.setText(convert.decimalToOctal(numberA));
+            } else if (selectedB.equals("Hexadecimal")) {
+                inputB.setText(convert.decimalToHexidecimal(numberA));
+            } else {
+                inputB.setText(numberA);
+            }
+        } else if (selectedA.equals("Binary")) {
+            String decimal = convert.binaryToDecimal(numberA);
+            if (selectedB.equals("Binary")) {
+                inputB.setText(convert.decimalToBinary(decimal));
+            } else if (selectedB.equals("Octal")) {
+                inputB.setText(convert.decimalToOctal(decimal));
+            } else if (selectedB.equals("Hexadecimal")) {
+                inputB.setText(convert.decimalToHexidecimal(decimal));
+            } else {
+                inputB.setText(decimal);
+            }
+        } else if (selectedA.equals("Octal")) {
+            String decimal = convert.octalToDecimal(numberA);
+            if (selectedB.equals("Binary")) {
+                inputB.setText(convert.decimalToBinary(decimal));
+            } else if (selectedB.equals("Octal")) {
+                inputB.setText(convert.decimalToOctal(decimal));
+            } else if (selectedB.equals("Hexadecimal")) {
+                inputB.setText(convert.decimalToHexidecimal(decimal));
+            } else {
+                inputB.setText(decimal);
+            }
+        } else if (selectedA.equals("Hexadecimal")) {
+            String decimal = convert.hexadecimalToDecimal(numberA);
+            if (selectedB.equals("Binary")) {
+                inputB.setText(convert.decimalToBinary(decimal));
+            } else if (selectedB.equals("Octal")) {
+                inputB.setText(convert.decimalToOctal(decimal));
+            } else if (selectedB.equals("Hexadecimal")) {
+                inputB.setText(convert.decimalToHexidecimal(decimal));
+            } else {
+                inputB.setText(decimal);
+            }
         }
 
-
-        JOptionPane.showMessageDialog(null, message);
+        //JOptionPane.showMessageDialog(null, message);
     }
 }
