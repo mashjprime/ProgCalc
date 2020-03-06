@@ -10,7 +10,6 @@ public class App {
 
     String[] baseNumbers = new String[] {"Decimal, Binary, Octal, Hexadecimal"};
 
-
     private App() {
         baseSelect.addItem("Decimal");
         baseSelect.addItem("Binary");
