@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
-public class console {
-    public static void menu() {
+class console {
+    static void menu() {
         boolean running = true;
-        Scanner in = new Scanner(System.in);
+
         String message = "";
         String menuOptions = "";
         int choice;
@@ -21,8 +21,8 @@ public class console {
             System.out.print("\n");
             System.out.println(message);
             System.out.println(menuOptions);
-            choice = in.nextInt();
 
+            choice = getSelection();
             switch (choice) {
                 case 1:
                     convertDecimal();
@@ -48,19 +48,29 @@ public class console {
         }
     }
 
-    private static void convertDecimal() {
+    private static int getSelection() {
+        int choice = 0;
         Scanner in = new Scanner(System.in);
+        try {
+            choice = in.nextInt();
+        }
+        catch (Exception e) {
+            // Not required?
+        }
+        return choice;
+    }
+
+    private static void convertDecimal() {
         System.out.println("Please enter decimal number: ");
-        String number = in.nextLine();
+        String number = String.valueOf(getSelection());
         System.out.println("Binary: " + convert.decimalToBinary(number));
         System.out.println("Octal: " + convert.decimalToOctal(number));
         System.out.println("Hexadecimal: " + convert.decimalToHexidecimal(number));
     }
 
     private static void convertBinary() {
-        Scanner in = new Scanner(System.in);
         System.out.println("Please enter binary number: ");
-        String number = in.nextLine();
+        String number = String.valueOf(getSelection());
         String decimal = convert.binaryToDecimal(number);
         System.out.println("Decimal: " + decimal);
         System.out.println("Octal: " + convert.decimalToOctal(decimal));
@@ -68,9 +78,8 @@ public class console {
     }
 
     private static void convertOctal() {
-        Scanner in = new Scanner(System.in);
         System.out.println("Please enter octal number: ");
-        String number = in.nextLine();
+        String number = String.valueOf(getSelection());
         String decimal = convert.octalToDecimal(number);
         System.out.println("Decimal: " + decimal);
         System.out.println("Binary: " + convert.decimalToBinary(decimal));
@@ -78,9 +87,8 @@ public class console {
     }
 
     private static void convertHexadecimal() {
-        Scanner in = new Scanner(System.in);
         System.out.println("Please enter hexadecimal number: ");
-        String number = in.nextLine();
+        String number = String.valueOf(getSelection());
         String decimal = convert.hexadecimalToDecimal(number);
         System.out.println("Decimal: " + decimal);
         System.out.println("Binary: " + convert.decimalToBinary(decimal));
